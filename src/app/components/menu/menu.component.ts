@@ -130,17 +130,17 @@ export class MenuComponent implements OnInit {
         items: [
           {
             label: 'Consultar',
-            routerLink: '/personas/consultar',
+            routerLink: '/produccion/consultar',
             icon: 'pi pi-fw pi-search',
           },
           {
             label: 'Insertar',
             icon: 'pi pi-fw pi-plus',
-            routerLink: '/personas/insertar',
+            routerLink: '/produccion/insertar',
           },
           {
             label: 'Modificar',
-            routerLink: '/personas/modificar',
+            routerLink: '/produccion/modificar',
             icon: 'pi pi-fw pi-file-edit',
           },
         ],
@@ -174,5 +174,6 @@ export class MenuComponent implements OnInit {
         routerLink: '/reportes',
       },
     ];
+    //volver al inicio
   }
 }
