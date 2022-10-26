@@ -4,9 +4,18 @@ import { ConsultarComponent } from './consultar/consultar.component';
 import { InsertarComponent } from './insertar/insertar.component';
 import { ModificarComponent } from './modificar/modificar.component';
 import { MaterialesRoutingModule } from './materiales-routing.module';
+import { ComponentsModule } from 'src/app/components/components.module';
+import { PrimeNGModule } from 'src/app/prime-ng/prime-ng.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ConsultarComponent, InsertarComponent, ModificarComponent],
-  imports: [CommonModule, MaterialesRoutingModule],
+  imports: [
+    CommonModule,
+    MaterialesRoutingModule,
+    ComponentsModule,
+    PrimeNGModule,
+    FormsModule,
+  ],
 })
 export class MaterialesModule {}

@@ -1,3 +1,5 @@
+<input [(ngModel)]="id" />
+<button (click)="buscarID()">Buscar_ID</button>
 <p-table #dt1 [value]="contactos" responsiveLayout="scroll">
   <span class="p-input-icon-left ml-auto">
     <i class="pi pi-search"></i>
@@ -11,8 +13,10 @@
   <ng-template pTemplate="header">
     <tr>
       <th>Id</th>
-      <th>Nombre Catalogo</th>
-      <th>Tipo Catalogo</th>
+      <th>Dato Contacto</th>
+      <th>Primer Nombre</th>
+      <th>Primer Apellido</th>
+      <th>Tipo Contacto</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-contacto>

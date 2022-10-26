@@ -1,1 +1,33 @@
-<p>consultar works!</p>
+<input [(ngModel)]="id" />
+<button (click)="buscarID()">Buscar_ID</button>
+<p-table #dt1 [value]="materiales" responsiveLayout="scroll">
+  <span class="p-input-icon-left ml-auto">
+    <i class="pi pi-search"></i>
+    <input
+      pInputText
+      type="text"
+      (input)="dt1.filterGlobal($event, 'contains')"
+      placeholder="Search keyword"
+    />
+  </span>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>Nombre material</th>
+      <th>Proveedor material</th>
+      <th>Teléfono proveedor</th>
+      <th>Tipo material</th>
+      <th>Uso material</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-materiales>
+    <tr>
+      <td>{{ materiales.id_material }}</td>
+      <td>{{ materiales.nombre_material }}</td>
+      <td>{{ materiales.proveedor_material }}</td>
+      <td>{{ materiales.tel_proveedor_material }}</td>
+      <td>{{ materiales.Tipo_Material }}</td>
+      <td>{{ materiales.Uso_Material }}</td>
+    </tr>
+  </ng-template>
+</p-table>

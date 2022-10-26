@@ -8,12 +8,21 @@ import { ServicioContacto } from '../servicio-contactos.service';
 })
 export class ConsultarComponent implements OnInit {
   public contactos: any = [];
+  public id: string = '';
+
+  buscarID() {
+    this.ServicioContacto.getContacto(this.id).subscribe();
+    this.ServicioContacto.contactos$.subscribe(
+      (data) => (this.contactos = data)
+    );
+  }
+
   constructor(private ServicioContacto: ServicioContacto) {}
 
   ngOnInit(): void {
-    this.ServicioContacto.getContactos.subscribe((data) => {
-      console.log(data);
-      this.contactos = data;
-    });
+    this.ServicioContacto.getContactos().subscribe();
+    this.ServicioContacto.contactos$.subscribe(
+      (data) => (this.contactos = data)
+    );
   }
 }

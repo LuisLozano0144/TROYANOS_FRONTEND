@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Contactos } from './contacto-interfaces';
 
 const httpOptions = {
@@ -11,6 +11,12 @@ const httpOptions = {
 })
 export class ServicioContacto {
   private Url: string = 'http//localhost:3000';
+  private contactos: BehaviorSubject<Contactos[] | null> = new BehaviorSubject(
+    null
+  ) as BehaviorSubject<Contactos[] | null>;
+  get contactos$(): Observable<Contactos[]> {
+    return this.contactos.asObservable() as Observable<Contactos[]>;
+  }
 
   constructor(private _http: HttpClient) {}
 
@@ -19,11 +25,26 @@ export class ServicioContacto {
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
   // Método consultar tipos de contactos
-  getContactos = new Observable<Contactos[]>((subs) => {
-    this._http
-      .get('http://localhost:3000/TipConct', httpOptions)
-      .subscribe((data) => {
-        subs.next(data as any);
-      });
-  });
+  getContactos() {
+    return this._http.get('http://localhost:3000/TipConct', httpOptions).pipe(
+      tap((data) => {
+        this.contactos.next(data as any);
+      })
+    );
+  }
+
+  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // SERVICIO BUSCAR POR ID CONTACTOS
+  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  // Método consultar por id
+  getContacto(id: string | number) {
+    return this._http
+      .get(`http://localhost:3000/TipConct/${id}`, httpOptions)
+      .pipe(
+        tap((data) => {
+          this.contactos.next(data as any);
+        })
+      );
+  }
 }
