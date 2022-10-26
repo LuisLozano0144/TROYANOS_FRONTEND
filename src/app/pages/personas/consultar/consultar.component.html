@@ -1,1 +1,41 @@
-<p>consultar works!</p>
+<input [(ngModel)]="id" />
+<button (click)="buscarID()">Buscar_ID</button>
+<p-table #dt1 [value]="personas" responsiveLayout="scroll">
+  <span class="p-input-icon-left ml-auto">
+    <i class="pi pi-search"></i>
+    <input
+      pInputText
+      type="text"
+      (input)="dt1.filterGlobal($event, 'contains')"
+      placeholder="Search keyword"
+    />
+  </span>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>Primer Nombre</th>
+      <th>Segundo Nombre</th>
+      <th>Primer Apellido</th>
+      <th>Segundo Apellido</th>
+      <th>Genero</th>
+      <th>Fecha Nacimiendo</th>
+      <th>Tipo Documento</th>
+      <th>Número Documento</th>
+      <th>Rol del enacargado</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-personas>
+    <tr>
+      <td>{{ personas.Id_Encargado }}</td>
+      <td>{{ personas.Nom1_Encargado }}</td>
+      <td>{{ personas.Nom2_Encargado }}</td>
+      <td>{{ personas.Apell1_Encargado }}</td>
+      <td>{{ personas.Apell2_Encargado }}</td>
+      <td>{{ personas.Sexo_Encargado }}</td>
+      <td>{{ personas.FechaNacimiento_Encargado | date }}</td>
+      <td>{{ personas.Documento_encargado }}</td>
+      <td>{{ personas.num_Doc_Encargado }}</td>
+      <td>{{ personas.Rol_Encargado }}</td>
+    </tr>
+  </ng-template>
+</p-table>

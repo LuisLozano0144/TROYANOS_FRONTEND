@@ -1,1 +1,27 @@
-<p>consultar works!</p>
+<p-table #dt1 [value]="contactos" responsiveLayout="scroll">
+  <span class="p-input-icon-left ml-auto">
+    <i class="pi pi-search"></i>
+    <input
+      pInputText
+      type="text"
+      (input)="dt1.filterGlobal($event, 'contains')"
+      placeholder="Search keyword"
+    />
+  </span>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>Nombre Catalogo</th>
+      <th>Tipo Catalogo</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-contacto>
+    <tr>
+      <td>{{ contacto.Id_Contactos }}</td>
+      <td>{{ contacto.Dato_Contacto }}</td>
+      <td>{{ contacto.Nombre_Contacto }}</td>
+      <td>{{ contacto.Apellido_Encargado }}</td>
+      <td>{{ contacto.Tipo_Contacto }}</td>
+    </tr>
+  </ng-template>
+</p-table>

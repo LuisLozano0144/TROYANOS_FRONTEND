@@ -6,6 +6,7 @@ import { InsertarComponent } from './insertar/insertar.component';
 import { ModificarComponent } from './modificar/modificar.component';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { PrimeNGModule } from 'src/app/prime-ng/prime-ng.module';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [ConsultarComponent, InsertarComponent, ModificarComponent],
   imports: [
@@ -13,6 +14,7 @@ import { PrimeNGModule } from 'src/app/prime-ng/prime-ng.module';
     CatalogoRoutingModule,
     ComponentsModule,
     PrimeNGModule,
+    FormsModule,
   ],
 })
 export class CatalogoModule {}

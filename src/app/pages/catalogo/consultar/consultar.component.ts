@@ -8,12 +8,20 @@ import { ServicioCatalogo } from '../servicio-catalogo.service';
 })
 export class ConsultarComponent implements OnInit {
   public catalogos: any = [];
+  public id: string = '';
+
+  buscarID() {
+    this.servicioCatalogo.getCatalogo(this.id).subscribe();
+    this.servicioCatalogo.catalogos$.subscribe(
+      (data) => (this.catalogos = data)
+    );
+  }
   constructor(private servicioCatalogo: ServicioCatalogo) {}
 
   ngOnInit(): void {
-    this.servicioCatalogo.getCatalogos.subscribe((data) => {
-      console.log(data);
-      this.catalogos = data;
-    });
+    this.servicioCatalogo.getCatalogos().subscribe();
+    this.servicioCatalogo.catalogos$.subscribe(
+      (data) => (this.catalogos = data)
+    );
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 import { Catalogos } from './catalogo.interfaces';
 
 const httpOptions = {
@@ -12,19 +12,41 @@ const httpOptions = {
 })
 export class ServicioCatalogo {
   private Url: string = 'http//localhost:3000';
-
+  private catalogos: BehaviorSubject<Catalogos[] | null> = new BehaviorSubject(
+    null
+  ) as BehaviorSubject<Catalogos[] | null>;
+  get catalogos$(): Observable<Catalogos[]> {
+    return this.catalogos.asObservable() as Observable<Catalogos[]>;
+  }
   constructor(private _http: HttpClient) {}
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // SERVICIO CRUD DE TIPOS DE CATALOGO
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-  // Método Listar de los Tipos de documentos
-  getCatalogos = new Observable<Catalogos[]>((subs) => {
-    this._http
+  // Método consultar tipos de catalogos
+  getCatalogos() {
+    return this._http
       .get('http://localhost:3000/TipCatalogo', httpOptions)
-      .subscribe((data) => {
-        subs.next(data as any);
-      });
-  });
+      .pipe(
+        tap((data) => {
+          this.catalogos.next(data as any);
+        })
+      );
+  }
+
+  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // SERVICIO BUSCAR POR ID CATALOGOS
+  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  // Método consultar por id
+  getCatalogo(id: string | number) {
+    return this._http
+      .get(`http://localhost:3000/TipCatalogo/${id}`, httpOptions)
+      .pipe(
+        tap((data) => {
+          this.catalogos.next(data as any);
+        })
+      );
+  }
 }
