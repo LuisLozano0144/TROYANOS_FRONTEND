@@ -1,0 +1,29 @@
+.main {
+  width: 40%;
+  box-sizing: border-box;
+  margin: auto;
+  margin-top: 40px;
+
+  &__form {
+    width: 100%;
+    box-sizing: border-box;
+
+    .row {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 30px;
+
+      &--select {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      input {
+        width: 100%;
+      }
+    }
+  }
+}

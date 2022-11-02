@@ -1,6 +1,11 @@
 <input [(ngModel)]="id" />
 <button (click)="buscarID()">Buscar_ID</button>
-<p-table #dt1 [value]="personas" responsiveLayout="scroll">
+<p-table
+  #dt1
+  [value]="personas"
+  responsiveLayout="scroll"
+  *ngIf="personas && personas.length > 0"
+>
   <span class="p-input-icon-left ml-auto">
     <i class="pi pi-search"></i>
     <input
@@ -22,6 +27,7 @@
       <th>Tipo Documento</th>
       <th>Número Documento</th>
       <th>Rol del enacargado</th>
+      <th>OPCIONES</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-personas>
@@ -36,6 +42,7 @@
       <td>{{ personas.Documento_encargado }}</td>
       <td>{{ personas.num_Doc_Encargado }}</td>
       <td>{{ personas.Rol_Encargado }}</td>
+      <td><button (click)="EditarID(personas.Id_Encargado)">EDITAR</button></td>
     </tr>
   </ng-template>
 </p-table>

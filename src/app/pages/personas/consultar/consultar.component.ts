@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicioPersona } from '../servicio-personas.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-consultar',
   templateUrl: './consultar.component.html',
@@ -13,10 +14,17 @@ export class ConsultarComponent implements OnInit {
     this.servicioPersona.getPersona(this.id).subscribe();
     this.servicioPersona.personas$.subscribe((data) => (this.personas = data));
   }
-  constructor(private servicioPersona: ServicioPersona) {}
+
+  EditarID(id: string) {
+    this.ruta.navigateByUrl(`/personas/modificar/${id}`);
+  }
+  constructor(private servicioPersona: ServicioPersona, private ruta: Router) {}
 
   ngOnInit(): void {
     this.servicioPersona.getPersonas().subscribe();
-    this.servicioPersona.personas$.subscribe((data) => (this.personas = data));
+    this.servicioPersona.personas$.subscribe((data) => {
+      console.log(data);
+      this.personas = data;
+    });
   }
 }

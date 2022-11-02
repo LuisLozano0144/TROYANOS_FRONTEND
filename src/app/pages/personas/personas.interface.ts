@@ -1,4 +1,4 @@
-export interface personas {
+export interface Personas {
   Id_Encargado?: string;
   Nom1_Encargado: string;
   Nom2_Encargado: string;
@@ -9,4 +9,8 @@ export interface personas {
   Documento_encargado: string;
   num_Doc_Encargado: string;
   Rol_Encargado: string;
+}
+export interface Select {
+  name: string;
+  code: string;
 }

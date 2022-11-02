@@ -28,11 +28,6 @@ export class MenuComponent implements OnInit {
             icon: 'pi pi-fw pi-plus',
             routerLink: '/catalogo/insertar',
           },
-          {
-            label: 'Modificar',
-            routerLink: '/catalogo/modificar',
-            icon: 'pi pi-fw pi-file-edit',
-          },
         ],
       },
       //menu personas
@@ -49,11 +44,6 @@ export class MenuComponent implements OnInit {
             label: 'Insertar',
             icon: 'pi pi-fw pi-user-plus',
             routerLink: '/personas/insertar',
-          },
-          {
-            label: 'Modificar',
-            routerLink: '/personas/modificar',
-            icon: 'pi pi-fw pi-user-edit',
           },
         ],
       },
@@ -72,11 +62,6 @@ export class MenuComponent implements OnInit {
             icon: 'pi pi-fw pi-plus',
             routerLink: '/contactos/insertar',
           },
-          {
-            label: 'Modificar',
-            routerLink: '/contactos/modificar',
-            icon: 'pi pi-fw pi-file-edit',
-          },
         ],
       },
       //menu materiales
@@ -93,11 +78,6 @@ export class MenuComponent implements OnInit {
             label: 'Insertar',
             icon: 'pi pi-fw pi-plus',
             routerLink: '/materiales/insertar',
-          },
-          {
-            label: 'Modificar',
-            routerLink: '/materiales/modificar',
-            icon: 'pi pi-fw pi-file-edit',
           },
         ],
       },
@@ -116,11 +96,6 @@ export class MenuComponent implements OnInit {
             icon: 'pi pi-fw pi-plus',
             routerLink: '/productos/insertar',
           },
-          {
-            label: 'Modificar',
-            routerLink: '/productos/modificar',
-            icon: 'pi pi-fw pi-file-edit',
-          },
         ],
       },
       //menu producción
@@ -138,11 +113,6 @@ export class MenuComponent implements OnInit {
             icon: 'pi pi-fw pi-plus',
             routerLink: '/produccion/insertar',
           },
-          {
-            label: 'Modificar',
-            routerLink: '/produccion/modificar',
-            icon: 'pi pi-fw pi-file-edit',
-          },
         ],
       },
       //menu tabla de paso
@@ -159,11 +129,6 @@ export class MenuComponent implements OnInit {
             label: 'Insertar',
             icon: 'pi pi-fw pi-plus',
             routerLink: '/materiales-x-productos/insertar',
-          },
-          {
-            label: 'Modificar',
-            routerLink: '/materiales-x-productos/modificar',
-            icon: 'pi pi-fw pi-file-edit',
           },
         ],
       },

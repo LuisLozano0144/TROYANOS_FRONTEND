@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { personas } from './personas.interfaces.module';
+import { Personas } from './personas.interface';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -10,11 +10,11 @@ const httpOptions = {
 })
 export class ServicioPersona {
   private Url: string = 'http://localhost:3000';
-  private personas: BehaviorSubject<personas[] | null> = new BehaviorSubject(
+  private personas: BehaviorSubject<Personas[] | null> = new BehaviorSubject(
     null
-  ) as BehaviorSubject<personas[] | null>;
-  get personas$(): Observable<personas[]> {
-    return this.personas.asObservable() as Observable<personas[]>;
+  ) as BehaviorSubject<Personas[] | null>;
+  get personas$(): Observable<Personas[]> {
+    return this.personas.asObservable() as Observable<Personas[]>;
   }
   constructor(private _http: HttpClient) {}
 
@@ -45,5 +45,37 @@ export class ServicioPersona {
           this.personas.next(data as any);
         })
       );
+  }
+  // Método para modificar una persona
+  putPersonas({
+    Id_Encargado,
+    Nom1_Encargado,
+    Nom2_Encargado,
+    Apell1_Encargado,
+    Apell2_Encargado,
+    Sexo_Encargado,
+    FechaNacimiento_Encargado,
+    Documento_encargado,
+    num_Doc_Encargado,
+    Rol_Encargado,
+  }: Personas) {
+    const body = {
+      Id_Encargado,
+      Nom1_Encargado,
+      Nom2_Encargado,
+      Apell1_Encargado,
+      Apell2_Encargado,
+      Sexo_Encargado,
+      FechaNacimiento_Encargado,
+      Documento_encargado,
+      num_Doc_Encargado,
+      Rol_Encargado,
+    };
+    console.log(body);
+    return this._http.put(
+      'http://localhost:3000/tipEncargados',
+      body,
+      httpOptions
+    );
   }
 }

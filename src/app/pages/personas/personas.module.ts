@@ -6,7 +6,7 @@ import { ModificarComponent } from './modificar/modificar.component';
 import { PersonasRoutingModule } from './personas-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { PrimeNGModule } from 'src/app/prime-ng/prime-ng.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ConsultarComponent, InsertarComponent, ModificarComponent],
@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
     PrimeNGModule,
     ComponentsModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class PersonasModule {}

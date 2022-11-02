@@ -1,1 +1,56 @@
-<p>modificar works!</p>
+<section class="main">
+  <form class="main__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <span class="p-float-label row">
+      <input id="username" type="text" formControlName="username" pInputText />
+      <label for="username">Nombre</label>
+    </span>
+    <span class="p-float-label row">
+      <input id="lastname" type="text" formControlName="lastname" pInputText />
+      <label for="lastname">Apellido</label>
+    </span>
+    <span class="row row--select">
+      <label for="sexo">Sexo</label>
+      <p-dropdown
+        id="sexo"
+        dataKey="value"
+        [options]="genders"
+        formControlName="sexo"
+        optionLabel="name"
+        placeholder="Elige tu sexo"
+      ></p-dropdown>
+    </span>
+    <span class="row row--select">
+      <label for="fecha">Fecha nacimiento</label>
+      <input id="fecha" type="date" formControlName="fecha" pInputText />
+    </span>
+    <span class="row row--select">
+      <label for="tipodoc">Tipo documento</label>
+      <p-dropdown
+        id="tipodoc"
+        dataKey="value"
+        [options]="tipodoc"
+        formControlName="tipodoc"
+        optionLabel="name"
+        placeholder="Elige tu tipo de documento"
+      ></p-dropdown>
+    </span>
+    <span class="p-float-label row">
+      <input id="numDoc" type="number" formControlName="numDoc" pInputText />
+      <label for="numDoc">Número documento</label>
+    </span>
+    <span class="row row--select">
+      <label for="roles">Roles</label>
+      <p-dropdown
+        id="roles"
+        dataKey="value"
+        [options]="roles"
+        formControlName="roles"
+        optionLabel="name"
+        placeholder="Elige tu rol"
+      ></p-dropdown>
+    </span>
+    <span class="row">
+      <button type="submit">Enviar</button>
+    </span>
+  </form>
+</section>
