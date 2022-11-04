@@ -18,6 +18,9 @@ export class ConsultarComponent implements OnInit {
   EditarID(id: string) {
     this.ruta.navigateByUrl(`/personas/modificar/${id}`);
   }
+  Insertar(id: string) {
+    this.ruta.navigateByUrl(`/personas/insertar`);
+  }
   constructor(private servicioPersona: ServicioPersona, private ruta: Router) {}
 
   ngOnInit(): void {

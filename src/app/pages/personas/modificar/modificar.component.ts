@@ -33,7 +33,7 @@ export class ModificarComponent implements OnInit {
       this.form.value.lastname?.trim().split(' ')[1] || '';
     const Rol_Encargado = this.form.value.roles?.code;
     const Sexo_Encargado = this.form.value.sexo?.code;
-    const Documento_encargado = this.form.value.tipodoc?.code;
+    const Tip_Doc_Encargado = this.form.value.tipodoc?.code;
     const num_Doc_Encargado = this.form.value.numDoc as string;
     const FechaNacimiento_Encargado = this.form.value.fecha;
 
@@ -42,20 +42,20 @@ export class ModificarComponent implements OnInit {
       Apell1_Encargado &&
       Rol_Encargado &&
       Sexo_Encargado &&
-      Documento_encargado &&
-      Documento_encargado &&
+      Tip_Doc_Encargado &&
+      num_Doc_Encargado &&
       FechaNacimiento_Encargado
     ) {
       this.serviciopersona
-        .putPersonas({
-          Id_Encargado: this.id,
+        .postPersonas({
+          // Id_Encargado: this.id,
           Nom1_Encargado,
           Nom2_Encargado,
           Apell1_Encargado,
           Apell2_Encargado,
           Sexo_Encargado,
           FechaNacimiento_Encargado,
-          Documento_encargado,
+          Tip_Doc_Encargado,
           num_Doc_Encargado,
           Rol_Encargado,
         })
@@ -81,7 +81,7 @@ export class ModificarComponent implements OnInit {
           'ng-invalid',
           'ng-dirty'
         );
-      if (!Documento_encargado)
+      if (!Tip_Doc_Encargado)
         (document.getElementById('tipodoc') as HTMLDivElement).classList.add(
           'ng-invalid',
           'ng-dirty'

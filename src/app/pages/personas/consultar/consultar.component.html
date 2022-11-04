@@ -1,5 +1,6 @@
 <input [(ngModel)]="id" />
 <button (click)="buscarID()">Buscar_ID</button>
+<button (click)="Insertar(personas.Id_Encargado)">INSERTAR</button>
 <p-table
   #dt1
   [value]="personas"
@@ -39,7 +40,7 @@
       <td>{{ personas.Apell2_Encargado }}</td>
       <td>{{ personas.Sexo_Encargado }}</td>
       <td>{{ personas.FechaNacimiento_Encargado | date }}</td>
-      <td>{{ personas.Documento_encargado }}</td>
+      <td>{{ personas.Tip_Doc_Encargado }}</td>
       <td>{{ personas.num_Doc_Encargado }}</td>
       <td>{{ personas.Rol_Encargado }}</td>
       <td><button (click)="EditarID(personas.Id_Encargado)">EDITAR</button></td>

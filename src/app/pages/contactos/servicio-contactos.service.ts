@@ -47,4 +47,10 @@ export class ServicioContacto {
         })
       );
   }
+  // Método modificar un contacto
+  putContacto({}: Contactos) {
+    const body = {};
+    console.log(body);
+    return this._http.put('http://localhost:3000/TipConct', body, httpOptions);
+  }
 }

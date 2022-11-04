@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicioContacto } from '../servicio-contactos.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-consultar',
   templateUrl: './consultar.component.html',
@@ -16,8 +16,13 @@ export class ConsultarComponent implements OnInit {
       (data) => (this.contactos = data)
     );
   }
-
-  constructor(private ServicioContacto: ServicioContacto) {}
+  EditarID(id: string) {
+    this.ruta.navigateByUrl(`/contactos/modificar/${id}`);
+  }
+  constructor(
+    private ServicioContacto: ServicioContacto,
+    private ruta: Router
+  ) {}
 
   ngOnInit(): void {
     this.ServicioContacto.getContactos().subscribe();

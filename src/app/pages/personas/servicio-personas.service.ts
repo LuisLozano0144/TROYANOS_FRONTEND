@@ -47,7 +47,7 @@ export class ServicioPersona {
       );
   }
   // Método para modificar una persona
-  putPersonas({
+  postPersonas({
     Id_Encargado,
     Nom1_Encargado,
     Nom2_Encargado,
@@ -55,24 +55,24 @@ export class ServicioPersona {
     Apell2_Encargado,
     Sexo_Encargado,
     FechaNacimiento_Encargado,
-    Documento_encargado,
+    Tip_Doc_Encargado,
     num_Doc_Encargado,
     Rol_Encargado,
   }: Personas) {
     const body = {
-      Id_Encargado,
+      // Id_Encargado,
       Nom1_Encargado,
       Nom2_Encargado,
       Apell1_Encargado,
       Apell2_Encargado,
       Sexo_Encargado,
       FechaNacimiento_Encargado,
-      Documento_encargado,
+      Tip_Doc_Encargado,
       num_Doc_Encargado,
       Rol_Encargado,
     };
     console.log(body);
-    return this._http.put(
+    return this._http.post(
       'http://localhost:3000/tipEncargados',
       body,
       httpOptions

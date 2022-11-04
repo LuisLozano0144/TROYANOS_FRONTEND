@@ -6,7 +6,7 @@ export interface Personas {
   Apell2_Encargado: string;
   Sexo_Encargado: string;
   FechaNacimiento_Encargado: string;
-  Documento_encargado: string;
+  Tip_Doc_Encargado: string;
   num_Doc_Encargado: string;
   Rol_Encargado: string;
 }

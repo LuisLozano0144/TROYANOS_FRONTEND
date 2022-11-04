@@ -17,6 +17,7 @@
       <th>Primer Nombre</th>
       <th>Primer Apellido</th>
       <th>Tipo Contacto</th>
+      <th>OPCIONES</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-contacto>
@@ -26,6 +27,9 @@
       <td>{{ contacto.Nombre_Contacto }}</td>
       <td>{{ contacto.Apellido_Encargado }}</td>
       <td>{{ contacto.Tipo_Contacto }}</td>
+      <td>
+        <button (click)="EditarID(contacto.Id_Contactos)">EDITAR</button>
+      </td>
     </tr>
   </ng-template>
 </p-table>
