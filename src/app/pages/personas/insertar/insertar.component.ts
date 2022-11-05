@@ -29,8 +29,7 @@ export class InsertarComponent implements OnInit {
     const Nom1_Encargado = this.form.value.username?.trim().split(' ')[0];
     const Nom2_Encargado = this.form.value.username?.trim().split(' ')[1] || '';
     const Apell1_Encargado = this.form.value.lastname?.trim().split(' ')[0];
-    const Apell2_Encargado =
-      this.form.value.lastname?.trim().split(' ')[1] || '';
+    const Apell2_Encargado =this.form.value.lastname?.trim().split(' ')[1] || '';
     const Rol_Encargado = this.form.value.roles?.code;
     const Sexo_Encargado = this.form.value.sexo?.code;
     const Tip_Doc_Encargado = this.form.value.tipodoc?.code;

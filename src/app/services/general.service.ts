@@ -39,4 +39,18 @@ export class GeneralService {
         //   })
       );
   }
+  NombrePersonas() {
+    return this._http.get('http://localhost:3000/tipEncargados').pipe(
+      map((data) => {
+        const people: any[] = [];
+        (data as any).forEach((element: any) => {
+          people.push({
+            code: element.Id_Encargado,
+            name: `${element.Nom1_Encargado} ${element.Apell1_Encargado}`,
+          });
+        });
+        return people;
+      })
+    );
+  }
 }

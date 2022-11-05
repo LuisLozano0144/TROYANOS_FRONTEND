@@ -40,11 +40,6 @@ export class MenuComponent implements OnInit {
             routerLink: '/personas/consultar',
             icon: 'pi pi-fw pi-search',
           },
-          {
-            label: 'Insertar',
-            icon: 'pi pi-fw pi-user-plus',
-            routerLink: '/personas/insertar',
-          },
         ],
       },
       //menu tipo contacto
@@ -56,11 +51,6 @@ export class MenuComponent implements OnInit {
             label: 'Consultar',
             routerLink: '/contactos/consultar',
             icon: 'pi pi-fw pi-search',
-          },
-          {
-            label: 'Insertar',
-            icon: 'pi pi-fw pi-plus',
-            routerLink: '/contactos/insertar',
           },
         ],
       },

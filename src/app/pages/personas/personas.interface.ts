@@ -1,5 +1,5 @@
 export interface Personas {
-  Id_Encargado?: string;
+  Id_Encargado?: string | number;
   Nom1_Encargado: string;
   Nom2_Encargado: string;
   Apell1_Encargado: string;

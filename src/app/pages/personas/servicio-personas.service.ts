@@ -46,7 +46,39 @@ export class ServicioPersona {
         })
       );
   }
-  // Método para modificar una persona
+  // Método para EDITAR una persona
+  putPersonas({
+    Id_Encargado,
+    Nom1_Encargado,
+    Nom2_Encargado,
+    Apell1_Encargado,
+    Apell2_Encargado,
+    Sexo_Encargado,
+    FechaNacimiento_Encargado,
+    Tip_Doc_Encargado,
+    num_Doc_Encargado,
+    Rol_Encargado,
+  }: Personas) {
+    const body = {
+      Id_Encargado,
+      Nom1_Encargado,
+      Nom2_Encargado,
+      Apell1_Encargado,
+      Apell2_Encargado,
+      Sexo_Encargado,
+      FechaNacimiento_Encargado,
+      Tip_Doc_Encargado,
+      num_Doc_Encargado,
+      Rol_Encargado,
+    };
+    console.log(body);
+    return this._http.put(
+      'http://localhost:3000/tipEncargados',
+      body,
+      httpOptions
+    );
+  }
+  // Método para INSERTAR una persona
   postPersonas({
     Id_Encargado,
     Nom1_Encargado,

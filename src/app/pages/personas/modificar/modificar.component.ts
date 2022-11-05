@@ -47,8 +47,8 @@ export class ModificarComponent implements OnInit {
       FechaNacimiento_Encargado
     ) {
       this.serviciopersona
-        .postPersonas({
-          // Id_Encargado: this.id,
+        .putPersonas({
+          Id_Encargado: parseInt(this.id),
           Nom1_Encargado,
           Nom2_Encargado,
           Apell1_Encargado,
@@ -111,12 +111,36 @@ export class ModificarComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.activeRoute.snapshot.params['id'];
-    this.generalService
-      .getCatalogos(`Categoria empleado`)
-      .subscribe((data) => (this.roles = data));
+    this.generalService.getCatalogos(`Categoria empleado`).subscribe((data) => {
+      this.roles = data;
+      this.generalService.getCatalogos(`Identificacion`).subscribe((data) => {
+        this.tipodoc = data;
+        this.serviciopersona.getPersona(this.id).subscribe((result) => {
+          const data = [...(result as any)];
+          const {
+            Nom1_Encargado,
+            Nom2_Encargado,
+            Apell1_Encargado,
+            Apell2_Encargado,
+            Sexo_Encargado,
+            FechaNacimiento_Encargado,
+            Tip_Doc_Encargado,
+            num_Doc_Encargado,
+            Rol_Encargado,
+          } = data[0] as any;
+          this.form.setValue({
+            username: `${Nom1_Encargado} ${Nom2_Encargado}`,
+            lastname: `${Apell1_Encargado} ${Apell2_Encargado}`,
 
-    this.generalService
-      .getCatalogos(`Identificacion`)
-      .subscribe((data) => (this.tipodoc = data));
+            sexo: { name: '', code: '' },
+            fecha: new Date(FechaNacimiento_Encargado).toString(),
+            tipodoc: { name: '', code: '' },
+            numDoc: num_Doc_Encargado,
+            roles: { name: '', code: '' },
+          });
+          console.log(result);
+        });
+      });
+    });
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { Contactos } from './contacto-interfaces';
 
 const httpOptions = {
@@ -52,5 +52,20 @@ export class ServicioContacto {
     const body = {};
     console.log(body);
     return this._http.put('http://localhost:3000/TipConct', body, httpOptions);
+  }
+  // Método para INSERTAR un contacto
+  postContacto({
+    Dato_Contacto,
+    Encargado_Contacto,
+    Tipo_Contacto,
+  }: Contactos) {
+    const body = {
+      // Id_Encargado,
+      Dato_Contacto,
+      Encargado_Contacto,
+      Tipo_Contacto,
+    };
+    console.log(body);
+    return this._http.post('http://localhost:3000/TipConct', body, httpOptions);
   }
 }

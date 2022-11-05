@@ -19,6 +19,9 @@ export class ConsultarComponent implements OnInit {
   EditarID(id: string) {
     this.ruta.navigateByUrl(`/contactos/modificar/${id}`);
   }
+  Insertar(id: string) {
+    this.ruta.navigateByUrl(`/contactos/insertar`);
+  }
   constructor(
     private ServicioContacto: ServicioContacto,
     private ruta: Router

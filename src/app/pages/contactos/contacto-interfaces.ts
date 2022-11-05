@@ -1,7 +1,10 @@
 export interface Contactos {
-  Id_Contactos: string;
+  Id_Contactos?: string;
   Dato_Contacto: string;
-  Nombre_Contacto: string;
-  Apellido_Encargado: string;
+  Encargado_Contacto: string;
   Tipo_Contacto: string;
+}
+export interface Select {
+  name: string;
+  code: string;
 }
