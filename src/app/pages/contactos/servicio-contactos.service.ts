@@ -47,12 +47,7 @@ export class ServicioContacto {
         })
       );
   }
-  // Método modificar un contacto
-  putContacto({}: Contactos) {
-    const body = {};
-    console.log(body);
-    return this._http.put('http://localhost:3000/TipConct', body, httpOptions);
-  }
+
   // Método para INSERTAR un contacto
   postContacto({
     Dato_Contacto,
@@ -60,12 +55,27 @@ export class ServicioContacto {
     Tipo_Contacto,
   }: Contactos) {
     const body = {
-      // Id_Encargado,
       Dato_Contacto,
       Encargado_Contacto,
       Tipo_Contacto,
     };
     console.log(body);
     return this._http.post('http://localhost:3000/TipConct', body, httpOptions);
+  }
+  //Metodo para MODIFICAR un contacto
+  putContacto({
+    Id_Contactos,
+    Dato_Contacto,
+    Encargado_Contacto,
+    Tipo_Contacto,
+  }: Contactos) {
+    const body = {
+      Id_Contactos,
+      Dato_Contacto,
+      Encargado_Contacto,
+      Tipo_Contacto,
+    };
+    console.log(body);
+    return this._http.put('http://localhost:3000/TipConct', body, httpOptions);
   }
 }

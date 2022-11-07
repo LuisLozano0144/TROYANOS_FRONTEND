@@ -1,1 +1,36 @@
-<p>modificar works!</p>
+<section class="main">
+  <form class="main__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <span class="row row--select">
+      <label for="Encargado_Contacto">Nombre Persona</label>
+      <p-dropdown
+        id="Encargado_Contacto"
+        [options]="people"
+        formControlName="Encargado_Contacto"
+        optionLabel="name"
+        placeholder="Nombre del colaborador"
+      ></p-dropdown>
+    </span>
+    <span class="row row--select">
+      <label for="Tipo_Contacto">Tipo de contacto</label>
+      <p-dropdown
+        id="Tipo_Contacto"
+        [options]="tipcontac"
+        formControlName="Tipo_Contacto"
+        optionLabel="name"
+        placeholder="Tipos de contacto"
+      ></p-dropdown>
+    </span>
+    <span class="p-float-label row">
+      <input
+        id="Dato_Contacto"
+        type="text"
+        formControlName="Dato_Contacto"
+        pInputText="Contacto"
+      />
+      <label for="Dato_Contacto">Digite el contacto</label>
+    </span>
+    <span class="row">
+      <button type="submit">Enviar</button>
+    </span>
+  </form>
+</section>

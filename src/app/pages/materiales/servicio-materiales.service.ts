@@ -47,4 +47,26 @@ export class ServicioMateriale {
         })
       );
   }
+  // Método para INSERTAR un material
+  postMaterial({
+    Nombre_Material,
+    Proveedor_Material,
+    tel_Proveedor_Material,
+    Tipo_Material,
+    Uso_Material,
+  }: Materiales) {
+    const body = {
+      Nombre_Material,
+      Proveedor_Material,
+      tel_Proveedor_Material,
+      Tipo_Material,
+      Uso_Material,
+    };
+    console.log(body);
+    return this._http.post(
+      'http://localhost:3000/TipMateriales',
+      body,
+      httpOptions
+    );
+  }
 }

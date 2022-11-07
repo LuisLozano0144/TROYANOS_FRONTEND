@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicioMateriale } from '../servicio-materiales.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consultar',
@@ -16,7 +17,16 @@ export class ConsultarComponent implements OnInit {
       (data) => (this.materiales = data)
     );
   }
-  constructor(private ServicioMateriale: ServicioMateriale) {}
+  EditarID(id: string) {
+    this.ruta.navigateByUrl(`/materiales/modificar/${id}`);
+  }
+  Insertar(id: string) {
+    this.ruta.navigateByUrl(`/materiales/insertar`);
+  }
+  constructor(
+    private ServicioMateriale: ServicioMateriale,
+    private ruta: Router
+  ) {}
 
   ngOnInit(): void {
     this.ServicioMateriale.getMateriales().subscribe();

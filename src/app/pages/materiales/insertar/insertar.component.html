@@ -1,1 +1,54 @@
-<p>insertar works!</p>
+<section class="main">
+  <form class="main__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <span class="row row--select">
+      <label for="Nombre_Material">Nombre Material</label>
+      <input
+        id="Nombre_Material"
+        type="text"
+        formControlName="Nombre_Material"
+        pInputText="Digite el nombrel del material"
+      />
+    </span>
+    <span class="row row--select">
+      <label for="Proveedor_Material">Proveedor Material</label>
+      <input
+        id="Proveedor_Material"
+        type="text"
+        formControlName="Proveedor_Material"
+        pInputText="Digite el nombrel del proveedor"
+      />
+    </span>
+    <span class="row row--select">
+      <label for="tel_Proveedor_Material">Teléfono Proveedor Material</label>
+      <input
+        id="tel_Proveedor_Material"
+        type="number"
+        formControlName="tel_Proveedor_Material"
+        pInputText="Digite el teléfono del material"
+      />
+    </span>
+    <span class="row row--select">
+      <label for="Tipo_Material">Tipo de material</label>
+      <p-dropdown
+        id="Tipo_Material"
+        [options]="tipmat"
+        formControlName="Tipo_Material"
+        optionLabel="name"
+        placeholder="Tipo de material"
+      ></p-dropdown>
+    </span>
+    <span class="row row--select">
+      <label for="Uso_Material">uso de material</label>
+      <p-dropdown
+        id="Uso_Material"
+        [options]="usomat"
+        formControlName="Uso_Material"
+        optionLabel="name"
+        placeholder="uso de material"
+      ></p-dropdown>
+    </span>
+    <span class="row">
+      <button type="submit">Enviar</button>
+    </span>
+  </form>
+</section>

@@ -1,8 +1,12 @@
 export interface Materiales {
-  id_material: string;
-  nombre_material: string;
-  proveedor_material: string;
-  tel_proveedor_material: string;
+  id_material?: string;
+  Nombre_Material: string;
+  Proveedor_Material: string;
+  tel_Proveedor_Material: string;
   Tipo_Material: string;
   Uso_Material: string;
+}
+export interface Select {
+  name: string;
+  code: string;
 }
