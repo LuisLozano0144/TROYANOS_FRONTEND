@@ -1,1 +1,26 @@
-<p>insertar works!</p>
+<section class="main">
+  <form class="main__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <span class="p-float-label row">
+      <input
+        id="Nombre_Catalogo"
+        type="text"
+        formControlName="Nombre_Catalogo"
+        pInputText="Nombre_Catalogo"
+      />
+      <label for="Nombre_Catalogo">Digite Nombre Catalogo</label>
+    </span>
+    <label for="Tipo_Catalogo">Digite Tipo Catalogo</label>
+    <span class="p-float-label row">
+      <p-dropdown
+        id="Tipo_Catalogo"
+        [options]="tipcatalogo"
+        type="text"
+        formControlName="Tipo_Catalogo"
+        pInputText="Tipo_Catalogo"
+      ></p-dropdown>
+    </span>
+    <span class="row">
+      <button type="submit">Enviar</button>
+    </span>
+  </form>
+</section>

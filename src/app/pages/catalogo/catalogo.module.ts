@@ -6,7 +6,7 @@ import { InsertarComponent } from './insertar/insertar.component';
 import { ModificarComponent } from './modificar/modificar.component';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { PrimeNGModule } from 'src/app/prime-ng/prime-ng.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GeneralService } from 'src/app/services/general.service';
 @NgModule({
   declarations: [ConsultarComponent, InsertarComponent, ModificarComponent],
@@ -16,7 +16,8 @@ import { GeneralService } from 'src/app/services/general.service';
     ComponentsModule,
     PrimeNGModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
-  providers:[GeneralService]
+  providers: [GeneralService],
 })
 export class CatalogoModule {}

@@ -49,4 +49,17 @@ export class ServicioCatalogo {
         })
       );
   }
+  // Método para INSERTAR un CATALOGO
+  postCatalogo({ Nombre_Catalogo, Tipo_Catalogo }: Catalogos) {
+    const body = {
+      Nombre_Catalogo,
+      Tipo_Catalogo,
+    };
+    console.log(body);
+    return this._http.post(
+      'http://localhost:3000/TipCatalogo',
+      body,
+      httpOptions
+    );
+  }
 }

@@ -1,1 +1,34 @@
-<p>consultar works!</p>
+<input [(ngModel)]="id" />
+<!-- <button (click)="buscarID()">Buscar_ID</button> -->
+<!-- <button (click)="Insertar(catalogos.Id_Catalogo)">INSERTAR</button> -->
+<p-table #dt1 [value]="productos" responsiveLayout="scroll">
+  <span class="p-input-icon-left ml-auto">
+    <i class="pi pi-search"></i>
+    <input
+      pInputText
+      type="text"
+      (input)="dt1.filterGlobal($event, 'contains')"
+      placeholder="Search keyword"
+    />
+  </span>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>Nombre Producto</th>
+      <th>Peso producto</th>
+      <th>Dimensiones producto</th>
+      <th>Tipo producto</th>
+      <th>Estilo producto</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-productos>
+    <tr>
+      <td>{{ productos.Id_Producto }}</td>
+      <td>{{ productos.Nombre_Producto }}</td>
+      <td>{{ productos.Peso_Producto }}</td>
+      <td>{{ productos.Dimensiones_Producto }}</td>
+      <td>{{ productos.Nombre_Catalogo }}</td>
+      <td>{{ productos.Tipo_Catalogo }}</td>
+    </tr>
+  </ng-template>
+</p-table>
