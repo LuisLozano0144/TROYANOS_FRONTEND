@@ -1,1 +1,54 @@
-<p>insertar works!</p>
+<section class="main">
+  <form class="main__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <span class="row row--select">
+      <label for="Nombre_Producto">Nombre Producto</label>
+      <input
+        id="Nombre_Producto"
+        type="text"
+        formControlName="Nombre_Producto"
+        pInputText="Digite el nombrel del producto"
+      />
+      <span class="row row--select">
+        <label for="Peso_Producto">Peso del producto</label>
+        <input
+          id="Peso_Producto"
+          type="text"
+          formControlName="Peso_Producto"
+          pInputText="Digite el peso del producto"
+        />
+      </span>
+      <span class="row row--select">
+        <label for="Dimensiones_Producto">Dimensiones Producto</label>
+        <input
+          id="Dimensiones_Producto"
+          type="text"
+          formControlName="Dimensiones_Producto"
+          pInputText="Digite las dimensiones del producto"
+        />
+      </span>
+      <span class="row row--select">
+        <label for="Tipo_producto">Tipo de producto</label>
+        <p-dropdown
+          id="Tipo_producto"
+          [options]="tipmat"
+          formControlName="Tipo_producto"
+          optionLabel="name"
+          placeholder="Tipo de producto"
+        ></p-dropdown>
+      </span>
+      <span class="row row--select">
+        <label for="Estilo_Producto">Estilo de Producto</label>
+        <p-dropdown
+          id="Estilo_Producto"
+          [options]="usomat"
+          formControlName="Estilo_Producto"
+          optionLabel="name"
+          placeholder="uso de producto"
+        ></p-dropdown>
+      </span>
+    </span>
+    <span class="row">
+      <button type="submit">Enviar</button>
+    </span>
+  </form>
+</section>

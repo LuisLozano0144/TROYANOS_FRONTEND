@@ -11,6 +11,15 @@ export class ConsultarComponent implements OnInit {
   public id: string = '';
   public productos: any = [];
 
+  buscarID() {
+    this.servicioProductos.getProducto(this.id).subscribe();
+    this.servicioProductos.productos$.subscribe(
+      (data) => (this.productos = data)
+    );
+  }
+  Insertar(id: string) {
+    this.ruta.navigateByUrl(`/productos/insertar`);
+  }
   constructor(
     private servicioProductos: ServicioProductos,
     private ruta: Router
