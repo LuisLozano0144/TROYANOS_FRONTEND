@@ -1,5 +1,5 @@
 export interface Materiales {
-  id_material?: string;
+  Id_Material?: string;
   Nombre_Material: string;
   Proveedor_Material: string;
   tel_Proveedor_Material: string;

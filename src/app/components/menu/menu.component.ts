@@ -23,11 +23,6 @@ export class MenuComponent implements OnInit {
             routerLink: '/catalogo/consultar',
             icon: 'pi pi-fw pi-search',
           },
-          {
-            label: 'Insertar',
-            icon: 'pi pi-fw pi-plus',
-            routerLink: '/catalogo/insertar',
-          },
         ],
       },
       //menu personas
@@ -64,11 +59,6 @@ export class MenuComponent implements OnInit {
             routerLink: '/materiales/consultar',
             icon: 'pi pi-fw pi-search',
           },
-          {
-            label: 'Insertar',
-            icon: 'pi pi-fw pi-plus',
-            routerLink: '/materiales/insertar',
-          },
         ],
       },
       //menu productos
@@ -80,11 +70,6 @@ export class MenuComponent implements OnInit {
             label: 'Consultar',
             routerLink: '/productos/consultar',
             icon: 'pi pi-fw pi-search',
-          },
-          {
-            label: 'Insertar',
-            icon: 'pi pi-fw pi-plus',
-            routerLink: '/productos/insertar',
           },
         ],
       },
@@ -98,11 +83,6 @@ export class MenuComponent implements OnInit {
             routerLink: '/produccion/consultar',
             icon: 'pi pi-fw pi-search',
           },
-          {
-            label: 'Insertar',
-            icon: 'pi pi-fw pi-plus',
-            routerLink: '/produccion/insertar',
-          },
         ],
       },
       //menu tabla de paso
@@ -114,11 +94,6 @@ export class MenuComponent implements OnInit {
             label: 'Consultar',
             routerLink: '/materiales-x-productos/consultar',
             icon: 'pi pi-fw pi-search',
-          },
-          {
-            label: 'Insertar',
-            icon: 'pi pi-fw pi-plus',
-            routerLink: '/materiales-x-productos/insertar',
           },
         ],
       },

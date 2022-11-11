@@ -1,1 +1,57 @@
-<p>insertar works!</p>
+<section class="main">
+  <form class="main__form" [formGroup]="form">
+    <span class="row row--select">
+      <label for="Fecha_Produccion">Fecha producción</label>
+      <input
+        id="Fecha_Produccion"
+        type="date"
+        formControlName="Fecha_Produccion"
+        pInputText
+      />
+    </span>
+    <span class="row row--select">
+      <label for="Id_Empleado_Produccion">Nombre Encargado</label>
+      <p-dropdown
+        id="Id_Empleado_Produccion"
+        dataKey="value"
+        [options]="people"
+        formControlName="Id_Empleado_Produccion"
+        optionLabel="name"
+        placeholder="Nombre del colaborador"
+      ></p-dropdown>
+    </span>
+    <span class="row row--select">
+      <label for="Id_Producto_Produccion">Producto</label>
+      <p-dropdown
+        id="Id_Producto_Produccion"
+        [options]="produc"
+        formControlName="Id_Producto_Produccion"
+        optionLabel="name"
+        placeholder="Producto producido"
+      ></p-dropdown>
+    </span>
+    <span class="row row--select">
+      <label for="num_totalProduccion">Digite el número total producido</label>
+      <input
+        id="num_totalProduccion"
+        type="number"
+        formControlName="num_totalProduccion"
+        pInputText="Digite el número total producido"
+      />
+    </span>
+    <span class="row row--select">
+      <label for="num_Defectuosos_Produccion"
+        >Digite el número total defectuosos</label
+      >
+      <input
+        id="num_Defectuosos_Produccion"
+        type="number"
+        formControlName="num_Defectuosos_Produccion"
+        pInputText="Digite el número total defectuosos"
+      />
+    </span>
+    <span class="row">
+      <button type="submit">Enviar</button>
+    </span>
+  </form>
+</section>

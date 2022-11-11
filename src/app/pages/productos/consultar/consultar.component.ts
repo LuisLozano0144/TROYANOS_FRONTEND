@@ -17,9 +17,13 @@ export class ConsultarComponent implements OnInit {
       (data) => (this.productos = data)
     );
   }
+  EditarID(id: string) {
+    this.ruta.navigateByUrl(`/productos/modificar/${id}`);
+  }
   Insertar(id: string) {
     this.ruta.navigateByUrl(`/productos/insertar`);
   }
+
   constructor(
     private servicioProductos: ServicioProductos,
     private ruta: Router

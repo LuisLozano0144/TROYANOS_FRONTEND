@@ -4,6 +4,8 @@ import { ServicioContacto } from '../servicio-contactos.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Select } from '../contacto-interfaces';
 import { ActivatedRoute } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-insertar',
@@ -29,14 +31,27 @@ export class InsertarComponent implements OnInit {
     const Tipo_Contacto = this.form.value.Tipo_Contacto?.code;
 
     if (Dato_Contacto && Encargado_Contacto && Tipo_Contacto) {
-      this.servicioContacto
-        .postContacto({
-          // Id_Encargado: this.id
-          Dato_Contacto,
-          Encargado_Contacto,
-          Tipo_Contacto,
-        })
-        .subscribe(console.log);
+      this.confirmationService.confirm({
+        message: 'Esta seguro de insertar un nuevo contacto?',
+        accept: () => {
+          this.servicioContacto
+            .postContacto({
+              // Id_Encargado: this.id
+              Dato_Contacto,
+              Encargado_Contacto,
+              Tipo_Contacto,
+            })
+            .subscribe((data) => {
+              console.log(data);
+              this.messageService.add({
+                key: 'myKey1',
+                severity: 'success',
+                summary: 'Confirmado',
+                detail: 'Contacto insertado',
+              });
+            });
+        },
+      });
     } else {
       if (!Dato_Contacto)
         (
@@ -56,7 +71,9 @@ export class InsertarComponent implements OnInit {
   constructor(
     private generalService: GeneralService,
     private servicioContacto: ServicioContacto,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {

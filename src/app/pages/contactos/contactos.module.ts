@@ -7,6 +7,8 @@ import { ContactoRoutingModule } from './contactos-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { PrimeNGModule } from 'src/app/prime-ng/prime-ng.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [ConsultarComponent, InsertarComponent, ModificarComponent],
@@ -18,5 +20,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
   ],
+  providers: [ConfirmationService, MessageService],
 })
 export class ContactosModule {}

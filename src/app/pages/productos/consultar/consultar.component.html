@@ -29,6 +29,9 @@
       <td>{{ productos.Dimensiones_Producto }}</td>
       <td>{{ productos.Nombre_Catalogo }}</td>
       <td>{{ productos.Tipo_Catalogo }}</td>
+      <td>
+        <button (click)="EditarID(productos.Id_Producto)">EDITAR</button>
+      </td>
     </tr>
   </ng-template>
 </p-table>

@@ -70,19 +70,27 @@ export class ServicioProductos {
     );
   }
   //Metodo para MODIFICAR un producto
-  // putContacto({
-  //   Id_Contactos,
-  //   Dato_Contacto,
-  //   Encargado_Contacto,
-  //   Tipo_Contacto,
-  // }: Contactos) {
-  //   const body = {
-  //     Id_Contactos,
-  //     Dato_Contacto,
-  //     Encargado_Contacto,
-  //     Tipo_Contacto,
-  //   };
-  //   console.log(body);
-  //   return this._http.put('http://localhost:3000/TipConct', body, httpOptions);
-  // }
+  putProducto({
+    Id_Producto,
+    Nombre_Producto,
+    Peso_Producto,
+    Dimensiones_Producto,
+    Tipo_producto,
+    Estilo_Producto,
+  }: Productos) {
+    const body = {
+      Id_Producto,
+      Nombre_Producto,
+      Peso_Producto,
+      Dimensiones_Producto,
+      Tipo_producto,
+      Estilo_Producto,
+    };
+    console.log(body);
+    return this._http.put(
+      'http://localhost:3000/TipProducto',
+      body,
+      httpOptions
+    );
+  }
 }

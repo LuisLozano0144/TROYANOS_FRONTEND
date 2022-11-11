@@ -1,1 +1,39 @@
-<p>consultar works!</p>
+<input [(ngModel)]="id" />
+<button (click)="buscarID()">Buscar_ID</button>
+<button (click)="Insertar(produccion.Id_Produccion)">INSERTAR</button>
+<p-table #dt1 [value]="produccion" responsiveLayout="scroll">
+  <span class="p-input-icon-left ml-auto">
+    <i class="pi pi-search"></i>
+    <input
+      pInputText
+      type="text"
+      (input)="dt1.filterGlobal($event, 'contains')"
+      placeholder="Search keyword"
+    />
+  </span>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>Fecha Producción</th>
+      <th>Nombre Empleado</th>
+      <th>Producto Producción</th>
+      <th>Número total producido</th>
+      <th>Número total defectuosos</th>
+      <th>OPCIONES</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-produccion>
+    <tr>
+      <td>{{ produccion.Id_Produccion }}</td>
+      <td>{{ produccion.Fecha_Produccion | date }}</td>
+      <td>{{ produccion.Nombre_Empleado }}</td>
+
+      <td>{{ produccion.Nombre_producto }}</td>
+      <td>{{ produccion.num_totalProduccion }}</td>
+      <td>{{ produccion.num_Defectuosos_Produccion }}</td>
+      <td>
+        <button (click)="EditarID(produccion.Id_Produccion)">EDITAR</button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

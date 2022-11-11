@@ -69,4 +69,28 @@ export class ServicioMateriale {
       httpOptions
     );
   }
+  // Método para MODIFICAR un material
+  putMaterial({
+    Id_Material,
+    Nombre_Material,
+    Proveedor_Material,
+    tel_Proveedor_Material,
+    Tipo_Material,
+    Uso_Material,
+  }: Materiales) {
+    const body = {
+      Id_Material,
+      Nombre_Material,
+      Proveedor_Material,
+      tel_Proveedor_Material,
+      Tipo_Material,
+      Uso_Material,
+    };
+    console.log(body);
+    return this._http.put(
+      'http://localhost:3000/TipMateriales',
+      body,
+      httpOptions
+    );
+  }
 }
