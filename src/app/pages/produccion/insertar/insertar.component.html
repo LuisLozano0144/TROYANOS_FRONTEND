@@ -1,5 +1,5 @@
 <section class="main">
-  <form class="main__form" [formGroup]="form">
+  <form class="main__form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <span class="row row--select">
       <label for="Fecha_Produccion">Fecha producción</label>
       <input

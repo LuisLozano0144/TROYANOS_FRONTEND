@@ -1,1 +1,38 @@
-<p>modificar works!</p>
+<section class="main">
+  <form class="main__form" [formGroup]="form" (ngSubmit)="onSumbit()">
+    <span class="row row--select">
+      <label for="IProducto_MaterialProducto">Nombre de producto</label>
+      <p-dropdown
+        id="IProducto_MaterialProducto"
+        [options]="nombreprod"
+        formControlName="IProducto_MaterialProducto"
+        optionLabel="name"
+        placeholder="Nombre producto"
+      ></p-dropdown>
+    </span>
+    <span class="row row--select">
+      <label for="IMaterial_MaterialProducto">Nombre del material</label>
+      <p-dropdown
+        id="IMaterial_MaterialProducto"
+        [options]="nombremat"
+        formControlName="IMaterial_MaterialProducto"
+        optionLabel="name"
+        placeholder="Nombre material"
+      ></p-dropdown>
+      <span class="row row--select">
+        <label for="cantidad_MaterialProducto"
+          >Cantidad Material Producto</label
+        >
+        <input
+          id="cantidad_MaterialProducto"
+          type="number"
+          formControlName="cantidad_MaterialProducto"
+          pInputText="Digite la cantidad de material"
+        />
+      </span>
+      <span class="row">
+        <button type="submit">Enviar</button>
+      </span>
+    </span>
+  </form>
+</section>

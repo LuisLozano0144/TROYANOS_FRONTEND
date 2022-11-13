@@ -39,6 +39,8 @@ export class GeneralService {
         //   })
       );
   }
+
+  //consultar personas
   NombrePersonas() {
     return this._http.get('http://localhost:3000/tipEncargados').pipe(
       map((data) => {
@@ -51,6 +53,47 @@ export class GeneralService {
         });
         return people;
       })
+    );
+  }
+  //consultar productos
+  getProductos() {
+    return this._http.get(`http://localhost:3000/TipProducto`).pipe(
+      map((value) => {
+        const temporaryData = [...(value as any)];
+        const finalydata: any[] = [];
+        temporaryData.forEach((items) => {
+          finalydata.push({
+            name: items.Nombre_Producto,
+            code: items.Id_Producto,
+          });
+        });
+        return finalydata;
+      })
+      //   tap((data) => {
+      // //    this.catalogos.next(data as any);
+      // console.log(data)
+      //   })
+    );
+  }
+
+  //consultar materiales
+  getMateriales() {
+    return this._http.get(`http://localhost:3000/TipMateriales`).pipe(
+      map((value) => {
+        const temporaryData = [...(value as any)];
+        const finalydata: any[] = [];
+        temporaryData.forEach((items) => {
+          finalydata.push({
+            name: items.nombre_material,
+            code: items.id_material,
+          });
+        });
+        return finalydata;
+      })
+      //   tap((data) => {
+      // //    this.catalogos.next(data as any);
+      // console.log(data)
+      //   })
     );
   }
 }

@@ -47,4 +47,50 @@ export class ServicioProduccion {
         })
       );
   }
+  // Método para INSERTAR una prpducción
+  postProducción({
+    Fecha_Produccion,
+    Id_Empleado_Produccion,
+    Id_Producto_Produccion,
+    num_totalProduccion,
+    num_Defectuosos_Produccion,
+  }: Produccion) {
+    const body = {
+      Fecha_Produccion,
+      Id_Empleado_Produccion,
+      Id_Producto_Produccion,
+      num_totalProduccion,
+      num_Defectuosos_Produccion,
+    };
+    console.log(body);
+    return this._http.post(
+      'http://localhost:3000/tipProduccion',
+      body,
+      httpOptions
+    );
+  }
+  // Método para INSERTAR una prpducción
+  putProduccion({
+    Id_Produccion,
+    Fecha_Produccion,
+    Id_Empleado_Produccion,
+    Id_Producto_Produccion,
+    num_totalProduccion,
+    num_Defectuosos_Produccion,
+  }: Produccion) {
+    const body = {
+      Id_Produccion,
+      Fecha_Produccion,
+      Id_Empleado_Produccion,
+      Id_Producto_Produccion,
+      num_totalProduccion,
+      num_Defectuosos_Produccion,
+    };
+    console.log(body);
+    return this._http.put(
+      'http://localhost:3000/tipProduccion',
+      body,
+      httpOptions
+    );
+  }
 }

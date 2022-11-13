@@ -7,6 +7,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { PrimeNGModule } from 'src/app/prime-ng/prime-ng.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InsertarComponent } from './insertar/insertar.component';
+import { GeneralService } from 'src/app/services/general.service';
 @NgModule({
   declarations: [ConsultarComponent, ModificarComponent, InsertarComponent],
   imports: [
@@ -17,5 +18,6 @@ import { InsertarComponent } from './insertar/insertar.component';
     FormsModule,
     ReactiveFormsModule,
   ],
+  providers: [GeneralService],
 })
 export class PersonasModule {}

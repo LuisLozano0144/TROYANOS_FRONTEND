@@ -80,10 +80,10 @@ export class InsertarComponent implements OnInit {
     this.id = this.activeRoute.snapshot.params['id'];
 
     this.generalService
-      .getCatalogos(`comidisimo`)
+      .getCatalogos(`Estilo_producto`)
       .subscribe((data) => (this.usomat = data));
     this.generalService
-      .getCatalogos(`hogar`)
+      .getCatalogos(`Tipo_Producto`)
       .subscribe((data) => (this.tipmat = data));
   }
 }

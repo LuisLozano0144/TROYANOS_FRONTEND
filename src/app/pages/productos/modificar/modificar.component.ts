@@ -79,13 +79,35 @@ export class ModificarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    //   this.id = this.activeRoute.snapshot.params['id'];
+
+    //   this.generalService
+    //     .getCatalogos(`comidisimo`)
+    //     .subscribe((data) => (this.usomat = data));
+    //   this.generalService
+    //     .getCatalogos(`hogar`)
+    //     .subscribe((data) => (this.tipmat = data));
+    // }
     this.id = this.activeRoute.snapshot.params['id'];
 
-    this.generalService
-      .getCatalogos(`comidisimo`)
-      .subscribe((data) => (this.usomat = data));
-    this.generalService
-      .getCatalogos(`hogar`)
-      .subscribe((data) => (this.tipmat = data));
+    this.generalService.getCatalogos(`Estilo_producto`).subscribe((data) => {
+      this.usomat = data;
+      this.generalService.getCatalogos(`Tipo_Producto`).subscribe((data) => {
+        this.tipmat = data;
+        this.servicioProductos.getProducto(this.id).subscribe((data: any) => {
+          this.form.setValue({
+            Nombre_Producto: data[0].Nombre_Producto,
+            Peso_Producto: data[0].Peso_Producto,
+            Dimensiones_Producto: data[0].Dimensiones_Producto,
+            Tipo_producto: this.tipmat.find(
+              (respon: any) => respon.name === data[0].Nombre_Catalogo
+            ) as any,
+            Estilo_Producto: this.usomat.find(
+              (respon: any) => respon.name === data[0].Tipo_Catalogo
+            ) as any,
+          });
+        });
+      });
+    });
   }
 }
