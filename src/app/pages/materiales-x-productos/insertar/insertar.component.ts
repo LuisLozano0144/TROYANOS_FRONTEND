@@ -67,10 +67,13 @@ export class InsertarComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.activeRoute.snapshot.params['id'];
 
+    this.generalService.getMateriales().subscribe((data) => {
+      this.nombremat = data;
+      console.log(data);
+    });
+
     this.generalService
-      .getMateriales()
-      .subscribe((data) => (this.nombremat = data));
-    this.generalService
+
       .getProductos()
       .subscribe((data) => (this.nombreprod = data));
   }

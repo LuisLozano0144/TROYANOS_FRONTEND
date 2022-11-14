@@ -4,6 +4,8 @@ import { ServicioProductos } from '../servicio-productos.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Select } from '../productos.interface';
 import { ActivatedRoute } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-insertar',
@@ -38,15 +40,28 @@ export class InsertarComponent implements OnInit {
       Tipo_producto &&
       Estilo_Producto
     ) {
-      this.servicioProductos
-        .postProducto({
-          Nombre_Producto,
-          Peso_Producto,
-          Dimensiones_Producto,
-          Tipo_producto,
-          Estilo_Producto,
-        })
-        .subscribe(console.log);
+      this.confirmationService.confirm({
+        message: 'Esta seguro de insertar un nuevo producto?',
+        accept: () => {
+          this.servicioProductos
+            .postProducto({
+              Nombre_Producto,
+              Peso_Producto,
+              Dimensiones_Producto,
+              Tipo_producto,
+              Estilo_Producto,
+            })
+            .subscribe((data) => {
+              console.log(data);
+              this.messageService.add({
+                key: 'myKey1',
+                severity: 'success',
+                summary: 'Confirmado',
+                detail: 'Producto insertado',
+              });
+            });
+        },
+      });
     } else {
       if (!Nombre_Producto)
         (
@@ -73,7 +88,9 @@ export class InsertarComponent implements OnInit {
   constructor(
     private generalService: GeneralService,
     private servicioProductos: ServicioProductos,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {

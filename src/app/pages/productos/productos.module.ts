@@ -8,6 +8,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { PrimeNGModule } from 'src/app/prime-ng/prime-ng.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GeneralService } from 'src/app/services/general.service';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [ConsultarComponent, InsertarComponent, ModificarComponent],
@@ -19,6 +21,6 @@ import { GeneralService } from 'src/app/services/general.service';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [GeneralService],
+  providers: [GeneralService, ConfirmationService, MessageService],
 })
 export class ProductosModule {}

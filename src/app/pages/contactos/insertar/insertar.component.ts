@@ -36,7 +36,6 @@ export class InsertarComponent implements OnInit {
         accept: () => {
           this.servicioContacto
             .postContacto({
-              // Id_Encargado: this.id
               Dato_Contacto,
               Encargado_Contacto,
               Tipo_Contacto,

@@ -62,4 +62,18 @@ export class ServicioCatalogo {
       httpOptions
     );
   }
+  // Método para MODIFICAR un CATALOGO
+  putCatalogo({ Id_Catalogo, Nombre_Catalogo, Tipo_Catalogo }: Catalogos) {
+    const body = {
+      Id_Catalogo,
+      Nombre_Catalogo,
+      Tipo_Catalogo,
+    };
+    console.log(body);
+    return this._http.put(
+      'http://localhost:3000/TipCatalogo',
+      body,
+      httpOptions
+    );
+  }
 }

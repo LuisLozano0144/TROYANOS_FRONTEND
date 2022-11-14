@@ -1,5 +1,14 @@
 <section class="main">
   <form class="main__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- cuadro de confirmacion  -->
+    <p-confirmDialog
+      header="Confirmation"
+      icon="pi pi-exclamation-triangle"
+    ></p-confirmDialog>
+
+    <p-toast key="myKey1"></p-toast>
+    <!-- cuadro de confirmacion  -->
+
     <span class="p-float-label row">
       <input
         id="Nombre_Catalogo"
@@ -9,16 +18,17 @@
       />
       <label for="Nombre_Catalogo">Digite Nombre Catalogo</label>
     </span>
-    <label for="Tipo_Catalogo">Digite Tipo Catalogo</label>
+
     <span class="p-float-label row">
-      <p-dropdown
+      <input
         id="Tipo_Catalogo"
-        [options]="tipcatalogo"
         type="text"
         formControlName="Tipo_Catalogo"
         pInputText="Tipo_Catalogo"
-      ></p-dropdown>
+      />
+      <label for="Tipo_Catalogo">Digite el Tipo de Catalogo</label>
     </span>
+
     <span class="row">
       <button type="submit">Enviar</button>
     </span>

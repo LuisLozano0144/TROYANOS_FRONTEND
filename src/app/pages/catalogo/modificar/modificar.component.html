@@ -1,1 +1,36 @@
-<p>modificar works!</p>
+<section class="main">
+  <form class="main__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- cuadro de confirmacion  -->
+    <p-confirmDialog
+      header="Confirmation"
+      icon="pi pi-exclamation-triangle"
+    ></p-confirmDialog>
+
+    <p-toast key="myKey1"></p-toast>
+    <!-- cuadro de confirmacion  -->
+
+    <span class="p-float-label row">
+      <input
+        id="Nombre_Catalogo"
+        type="text"
+        formControlName="Nombre_Catalogo"
+        pInputText="Nombre_Catalogo"
+      />
+      <label for="Nombre_Catalogo">Digite Nombre Catalogo</label>
+    </span>
+
+    <span class="p-float-label row">
+      <input
+        id="Tipo_Catalogo"
+        type="text"
+        formControlName="Tipo_Catalogo"
+        pInputText="Tipo_Catalogo"
+      />
+      <label for="Tipo_Catalogo">Digite el Tipo de Catalogo</label>
+    </span>
+
+    <span class="row">
+      <button type="submit">Enviar</button>
+    </span>
+  </form>
+</section>

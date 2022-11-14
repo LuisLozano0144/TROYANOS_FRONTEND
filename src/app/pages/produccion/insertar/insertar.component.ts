@@ -4,7 +4,8 @@ import { ServicioProduccion } from '../servicio-produccion.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Select } from '../produccion-interfaces';
 import { ActivatedRoute } from '@angular/router';
-import { fromEvent } from 'rxjs';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-insertar',
@@ -38,15 +39,28 @@ export class InsertarComponent implements OnInit {
       num_totalProduccion &&
       num_Defectuosos_Produccion
     ) {
-      this.servicioProduccion
-        .postProducción({
-          Fecha_Produccion,
-          Id_Empleado_Produccion,
-          Id_Producto_Produccion,
-          num_totalProduccion,
-          num_Defectuosos_Produccion,
-        })
-        .subscribe(console.log);
+      this.confirmationService.confirm({
+        message: 'Esta seguro de insertar una nueva producción?',
+        accept: () => {
+          this.servicioProduccion
+            .postProducción({
+              Fecha_Produccion,
+              Id_Empleado_Produccion,
+              Id_Producto_Produccion,
+              num_totalProduccion,
+              num_Defectuosos_Produccion,
+            })
+            .subscribe((data) => {
+              console.log(data);
+              this.messageService.add({
+                key: 'myKey1',
+                severity: 'success',
+                summary: 'Confirmado',
+                detail: 'Producción insertada',
+              });
+            });
+        },
+      });
     } else {
       if (!Fecha_Produccion)
         (
@@ -77,14 +91,16 @@ export class InsertarComponent implements OnInit {
   constructor(
     private generalService: GeneralService,
     private servicioProduccion: ServicioProduccion,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
     this.id = this.activeRoute.snapshot.params['id'];
 
     this.generalService
-      .getCatalogos(`Tipo Producto`)
+      .getProductos()
       .subscribe((data) => (this.produc = data));
     this.generalService
       .NombrePersonas()

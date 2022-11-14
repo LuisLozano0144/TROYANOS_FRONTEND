@@ -16,6 +16,7 @@
       <th>Id</th>
       <th>Nombre Catalogo</th>
       <th>Tipo Catalogo</th>
+      <th>OPCIONES</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-catalogo>
@@ -23,6 +24,7 @@
       <td>{{ catalogo.Id_Catalogo }}</td>
       <td>{{ catalogo.Nombre_Catalogo }}</td>
       <td>{{ catalogo.Tipo_Catalogo }}</td>
+      <button (click)="EditarID(catalogo.Id_Catalogo)">EDITAR</button>
     </tr>
   </ng-template>
 </p-table>

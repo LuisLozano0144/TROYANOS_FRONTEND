@@ -4,6 +4,8 @@ import { ServicioCatalogo } from '../servicio-catalogo.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Select } from '../catalogo.interfaces';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-insertar',
@@ -15,20 +17,33 @@ export class InsertarComponent implements OnInit {
 
   public form = new FormGroup({
     Nombre_Catalogo: new FormControl(''),
-    Tipo_Catalogo: new FormControl<Select>({ code: '', name: '' }),
+    Tipo_Catalogo: new FormControl(''),
   });
 
   onSubmit() {
     const Nombre_Catalogo = this.form.value.Nombre_Catalogo;
-    const Tipo_Catalogo = this.form.value.Tipo_Catalogo?.name;
+    const Tipo_Catalogo = this.form.value.Tipo_Catalogo;
 
     if (Nombre_Catalogo && Tipo_Catalogo) {
-      this.servicioCatalogo
-        .postCatalogo({
-          Nombre_Catalogo,
-          Tipo_Catalogo,
-        })
-        .subscribe(console.log);
+      this.confirmationService.confirm({
+        message: 'Esta seguro de insertar un nuevo catalogo?',
+        accept: () => {
+          this.servicioCatalogo
+            .postCatalogo({
+              Nombre_Catalogo,
+              Tipo_Catalogo,
+            })
+            .subscribe((data) => {
+              console.log(data);
+              this.messageService.add({
+                key: 'myKey1',
+                severity: 'success',
+                summary: 'Confirmado',
+                detail: 'Catalogo insertado',
+              });
+            });
+        },
+      });
     } else {
       if (!Nombre_Catalogo)
         (
@@ -44,7 +59,9 @@ export class InsertarComponent implements OnInit {
   constructor(
     private generalService: GeneralService,
     private servicioCatalogo: ServicioCatalogo,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {

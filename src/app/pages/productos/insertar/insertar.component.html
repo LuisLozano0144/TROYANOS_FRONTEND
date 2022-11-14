@@ -1,5 +1,14 @@
 <section class="main">
   <form class="main__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- cuadro de confirmacion  -->
+    <p-confirmDialog
+      header="Confirmation"
+      icon="pi pi-exclamation-triangle"
+    ></p-confirmDialog>
+
+    <p-toast key="myKey1"></p-toast>
+    <!-- cuadro de confirmacion  -->
+
     <span class="row row--select">
       <label for="Nombre_Producto">Nombre Producto</label>
       <input
