@@ -4,6 +4,8 @@ import { ServicioPersona } from '../servicio-personas.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Select } from '../personas.interface';
 import { ActivatedRoute } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-modificar',
   templateUrl: './modificar.component.html',
@@ -46,20 +48,33 @@ export class ModificarComponent implements OnInit {
       num_Doc_Encargado &&
       FechaNacimiento_Encargado
     ) {
-      this.serviciopersona
-        .putPersonas({
-          Id_Encargado: parseInt(this.id),
-          Nom1_Encargado,
-          Nom2_Encargado,
-          Apell1_Encargado,
-          Apell2_Encargado,
-          Sexo_Encargado,
-          FechaNacimiento_Encargado,
-          Tip_Doc_Encargado,
-          num_Doc_Encargado,
-          Rol_Encargado,
-        })
-        .subscribe(console.log);
+      this.confirmationService.confirm({
+        message: 'Esta seguro de modificar este colaborador?',
+        accept: () => {
+          this.serviciopersona
+            .putPersonas({
+              Id_Encargado: parseInt(this.id),
+              Nom1_Encargado,
+              Nom2_Encargado,
+              Apell1_Encargado,
+              Apell2_Encargado,
+              Sexo_Encargado,
+              FechaNacimiento_Encargado,
+              Tip_Doc_Encargado,
+              num_Doc_Encargado,
+              Rol_Encargado,
+            })
+            .subscribe((data) => {
+              console.log(data);
+              this.messageService.add({
+                key: 'myKey1',
+                severity: 'success',
+                summary: 'Confirmado',
+                detail: 'Colaborador modificado',
+              });
+            });
+        },
+      });
     } else {
       if (!Nom1_Encargado)
         (document.getElementById('username') as HTMLDivElement).classList.add(
@@ -106,7 +121,9 @@ export class ModificarComponent implements OnInit {
   constructor(
     private generalService: GeneralService,
     private serviciopersona: ServicioPersona,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {

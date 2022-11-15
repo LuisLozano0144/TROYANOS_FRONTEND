@@ -4,6 +4,8 @@ import { ServicioMaterialesXproductos } from '../servicio-materiales-xproductos.
 import { FormGroup, FormControl } from '@angular/forms';
 import { Select } from '../materiales-xproductos.interface';
 import { ActivatedRoute } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-insertar',
@@ -32,13 +34,26 @@ export class InsertarComponent implements OnInit {
       IMaterial_MaterialProducto &&
       cantidad_MaterialProducto
     ) {
-      this.servicioMaterialesXproductos
-        .postMaterialXP({
-          IProducto_MaterialProducto,
-          IMaterial_MaterialProducto,
-          cantidad_MaterialProducto,
-        })
-        .subscribe(console.log);
+      this.confirmationService.confirm({
+        message: 'Esta seguro de insertar un material por productp?',
+        accept: () => {
+          this.servicioMaterialesXproductos
+            .postMaterialXP({
+              IProducto_MaterialProducto,
+              IMaterial_MaterialProducto,
+              cantidad_MaterialProducto,
+            })
+            .subscribe((data) => {
+              console.log(data);
+              this.messageService.add({
+                key: 'myKey1',
+                severity: 'success',
+                summary: 'Confirmado',
+                detail: 'Material por producto insertado ',
+              });
+            });
+        },
+      });
     } else {
       if (!IProducto_MaterialProducto)
         (
@@ -61,7 +76,9 @@ export class InsertarComponent implements OnInit {
   constructor(
     private generalService: GeneralService,
     private servicioMaterialesXproductos: ServicioMaterialesXproductos,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {

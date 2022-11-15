@@ -1,6 +1,14 @@
 <section class="main">
   <form class="main__form" [formGroup]="form" (ngSubmit)="onSumbit()">
     <span class="row row--select">
+      <!-- cuadro de confirmacion  -->
+      <p-confirmDialog
+        header="Confirmation"
+        icon="pi pi-exclamation-triangle"
+      ></p-confirmDialog>
+
+      <p-toast key="myKey1"></p-toast>
+      <!-- cuadro de confirmacion  -->
       <label for="IProducto_MaterialProducto">Nombre de producto</label>
       <p-dropdown
         id="IProducto_MaterialProducto"

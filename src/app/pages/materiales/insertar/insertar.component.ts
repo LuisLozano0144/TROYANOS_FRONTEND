@@ -4,6 +4,8 @@ import { ServicioMateriale } from '../servicio-materiales.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Select } from '../materiales.interfaces';
 import { ActivatedRoute } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-insertar',
@@ -38,15 +40,28 @@ export class InsertarComponent implements OnInit {
       Tipo_Material &&
       Uso_Material
     ) {
-      this.servicioMateriale
-        .postMaterial({
-          Nombre_Material,
-          Proveedor_Material,
-          tel_Proveedor_Material,
-          Tipo_Material,
-          Uso_Material,
-        })
-        .subscribe(console.log);
+      this.confirmationService.confirm({
+        message: 'Esta seguro de insertar un nuevo material?',
+        accept: () => {
+          this.servicioMateriale
+            .postMaterial({
+              Nombre_Material,
+              Proveedor_Material,
+              tel_Proveedor_Material,
+              Tipo_Material,
+              Uso_Material,
+            })
+            .subscribe((data) => {
+              console.log(data);
+              this.messageService.add({
+                key: 'myKey1',
+                severity: 'success',
+                summary: 'Confirmado',
+                detail: 'Materuial insertado',
+              });
+            });
+        },
+      });
     } else {
       if (!Nombre_Material)
         (
@@ -74,17 +89,19 @@ export class InsertarComponent implements OnInit {
   constructor(
     private generalService: GeneralService,
     private servicioMateriale: ServicioMateriale,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
     this.id = this.activeRoute.snapshot.params['id'];
 
     this.generalService
-      .getCatalogos(`Tipo Producto`)
-      .subscribe((data) => (this.usomat = data));
-    this.generalService
-      .getCatalogos(`Estilo Producto`)
+      .getCatalogos(`Tipo_Material`)
       .subscribe((data) => (this.tipmat = data));
+    this.generalService
+      .getCatalogos('Uso_Material')
+      .subscribe((data) => (this.usomat = data));
   }
 }

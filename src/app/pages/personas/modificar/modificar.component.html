@@ -1,5 +1,13 @@
 <section class="main">
   <form class="main__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- cuadro de confirmacion  -->
+    <p-confirmDialog
+      header="Confirmation"
+      icon="pi pi-exclamation-triangle"
+    ></p-confirmDialog>
+
+    <p-toast key="myKey1"></p-toast>
+    <!-- cuadro de confirmacion  -->
     <span class="p-float-label row">
       <input id="username" type="text" formControlName="username" pInputText />
       <label for="username">Nombre</label>
@@ -12,7 +20,6 @@
       <label for="sexo">Sexo</label>
       <p-dropdown
         id="sexo"
-        dataKey="value"
         [options]="genders"
         formControlName="sexo"
         optionLabel="name"
@@ -27,7 +34,6 @@
       <label for="tipodoc">Tipo documento</label>
       <p-dropdown
         id="tipodoc"
-        dataKey="value"
         [options]="tipodoc"
         formControlName="tipodoc"
         optionLabel="name"
@@ -42,7 +48,6 @@
       <label for="roles">Roles</label>
       <p-dropdown
         id="roles"
-        dataKey="value"
         [options]="roles"
         formControlName="roles"
         optionLabel="name"

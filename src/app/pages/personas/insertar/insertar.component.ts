@@ -4,6 +4,9 @@ import { ServicioPersona } from '../servicio-personas.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Select } from '../personas.interface';
 import { ActivatedRoute } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-insertar',
   templateUrl: './insertar.component.html',
@@ -29,7 +32,8 @@ export class InsertarComponent implements OnInit {
     const Nom1_Encargado = this.form.value.username?.trim().split(' ')[0];
     const Nom2_Encargado = this.form.value.username?.trim().split(' ')[1] || '';
     const Apell1_Encargado = this.form.value.lastname?.trim().split(' ')[0];
-    const Apell2_Encargado =this.form.value.lastname?.trim().split(' ')[1] || '';
+    const Apell2_Encargado =
+      this.form.value.lastname?.trim().split(' ')[1] || '';
     const Rol_Encargado = this.form.value.roles?.code;
     const Sexo_Encargado = this.form.value.sexo?.code;
     const Tip_Doc_Encargado = this.form.value.tipodoc?.code;
@@ -45,20 +49,33 @@ export class InsertarComponent implements OnInit {
       num_Doc_Encargado &&
       FechaNacimiento_Encargado
     ) {
-      this.serviciopersona
-        .postPersonas({
-          // Id_Encargado: this.id,
-          Nom1_Encargado,
-          Nom2_Encargado,
-          Apell1_Encargado,
-          Apell2_Encargado,
-          Sexo_Encargado,
-          FechaNacimiento_Encargado,
-          Tip_Doc_Encargado,
-          num_Doc_Encargado,
-          Rol_Encargado,
-        })
-        .subscribe(console.log);
+      this.confirmationService.confirm({
+        message: 'Esta seguro de insertar este colaborador?',
+        accept: () => {
+          this.serviciopersona
+            .postPersonas({
+              // Id_Encargado: this.id,
+              Nom1_Encargado,
+              Nom2_Encargado,
+              Apell1_Encargado,
+              Apell2_Encargado,
+              Sexo_Encargado,
+              FechaNacimiento_Encargado,
+              Tip_Doc_Encargado,
+              num_Doc_Encargado,
+              Rol_Encargado,
+            })
+            .subscribe((data) => {
+              console.log(data);
+              this.messageService.add({
+                key: 'myKey1',
+                severity: 'success',
+                summary: 'Confirmado',
+                detail: 'Colaborador insertado',
+              });
+            });
+        },
+      });
     } else {
       if (!Nom1_Encargado)
         (document.getElementById('username') as HTMLDivElement).classList.add(
@@ -105,7 +122,9 @@ export class InsertarComponent implements OnInit {
   constructor(
     private generalService: GeneralService,
     private serviciopersona: ServicioPersona,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {

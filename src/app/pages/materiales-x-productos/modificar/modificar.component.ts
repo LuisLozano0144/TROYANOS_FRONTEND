@@ -4,6 +4,8 @@ import { ServicioMaterialesXproductos } from '../servicio-materiales-xproductos.
 import { FormGroup, FormControl } from '@angular/forms';
 import { Select } from '../materiales-xproductos.interface';
 import { ActivatedRoute } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-modificar',
@@ -32,14 +34,27 @@ export class ModificarComponent implements OnInit {
       IMaterial_MaterialProducto &&
       cantidad_MaterialProducto
     ) {
-      this.servicioMaterialesXproductos
-        .putMaterialXP({
-          Id_MaterialProducto: this.id,
-          IProducto_MaterialProducto,
-          IMaterial_MaterialProducto,
-          cantidad_MaterialProducto,
-        })
-        .subscribe(console.log);
+      this.confirmationService.confirm({
+        message: 'Esta seguro de modificar este material por productp?',
+        accept: () => {
+          this.servicioMaterialesXproductos
+            .putMaterialXP({
+              Id_MaterialProducto: this.id,
+              IProducto_MaterialProducto,
+              IMaterial_MaterialProducto,
+              cantidad_MaterialProducto,
+            })
+            .subscribe((data) => {
+              console.log(data);
+              this.messageService.add({
+                key: 'myKey1',
+                severity: 'success',
+                summary: 'Confirmado',
+                detail: 'Material por producto modificado ',
+              });
+            });
+        },
+      });
     } else {
       if (!IProducto_MaterialProducto)
         (
@@ -62,7 +77,9 @@ export class ModificarComponent implements OnInit {
   constructor(
     private generalService: GeneralService,
     private servicioMaterialesXproductos: ServicioMaterialesXproductos,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
