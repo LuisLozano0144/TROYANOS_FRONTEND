@@ -82,14 +82,40 @@ export class ModificarComponent implements OnInit {
     private messageService: MessageService
   ) {}
 
+  // ngOnInit(): void {
+  //   this.id = this.activeRoute.snapshot.params['id'];
+
+  //   this.generalService
+  //     .getMateriales()
+  //     .subscribe((data) => (this.nombremat = data));
+  //   this.generalService
+  //     .getProductos()
+  //     .subscribe((data) => (this.nombreprod = data));
+  // }
   ngOnInit(): void {
     this.id = this.activeRoute.snapshot.params['id'];
 
-    this.generalService
-      .getMateriales()
-      .subscribe((data) => (this.nombremat = data));
-    this.generalService
-      .getProductos()
-      .subscribe((data) => (this.nombreprod = data));
+    this.generalService.getMateriales().subscribe((data) => {
+      this.nombremat = data;
+      this.generalService.getProductos().subscribe((data) => {
+        this.nombreprod = data;
+
+        this.servicioMaterialesXproductos
+
+          .getMaterial(this.id)
+
+          .subscribe((data: any) => {
+            this.form.setValue({
+              cantidad_MaterialProducto: data[0].cantidad_MaterialProducto,
+              IMaterial_MaterialProducto: this.nombremat.find(
+                (item: any) => item.name === data[0].Nombre_Material
+              ) as any,
+              IProducto_MaterialProducto: this.nombreprod.find(
+                (result: any) => result.name === data[0].Nombre_Producto
+              ),
+            });
+          });
+      });
+    });
   }
 }

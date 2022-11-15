@@ -97,13 +97,33 @@ export class MenuComponent implements OnInit {
           },
         ],
       },
+      // //menu reportes
+      // {
+      //   label: 'Reportes',
+      //   icon: 'pi pi-fw pi-chart-bar',
+      //   routerLink: '/reportes',
+      // },
+
       //menu reportes
       {
         label: 'Reportes',
         icon: 'pi pi-fw pi-chart-bar',
-        routerLink: '/reportes',
+        // routerLink: '/reportes',
+        items: [
+          {
+            label: 'Reporte Personas',
+            routerLink: '/reportes',
+            icon: 'pi pi-fw pi-search',
+          },
+          {
+            label: 'Reporte Productos',
+            routerLink: '/reporte/producto',
+            icon: 'pi pi-fw pi-search',
+          },
+        ],
       },
+
+      //volver al inicio
     ];
-    //volver al inicio
   }
 }

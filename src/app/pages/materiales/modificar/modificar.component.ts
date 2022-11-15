@@ -94,38 +94,40 @@ export class ModificarComponent implements OnInit {
     private messageService: MessageService
   ) {}
 
+  // ngOnInit(): void {
+  //   this.id = this.activeRoute.snapshot.params['id'];
+
+  //   this.generalService
+  //     .getCatalogos(`Tipo_Material`)
+  //     .subscribe((data) => (this.tipmat = data));
+  //   this.generalService
+  //     .getCatalogos('Uso_Material')
+  //     .subscribe((data) => (this.usomat = data));
+  // }
+
   ngOnInit(): void {
     this.id = this.activeRoute.snapshot.params['id'];
 
-    this.generalService
-      .getCatalogos(`Tipo_Material`)
-      .subscribe((data) => (this.tipmat = data));
-    this.generalService
-      .getCatalogos('Uso_Material')
-      .subscribe((data) => (this.usomat = data));
+    this.generalService.getMateriales().subscribe((data) => {
+      this.tipmat = data;
+      this.generalService.getMateriales().subscribe((data) => {
+        this.usomat = data;
+
+        this.servicioMateriale.getMaterial(this.id).subscribe((data: any) => {
+          this.form.setValue({
+            Nombre_Material: data[0].nombre_material,
+            Proveedor_Material: data[0].proveedor_material,
+            tel_Proveedor_Material: data[0].tel_proveedor_material,
+
+            Tipo_Material: this.tipmat.find(
+              (respon: any) => respon.name === data[0].nombre_material
+            ) as any,
+            Uso_Material: this.usomat.find(
+              (result: any) => result.name === data[0].nombre_material
+            ) as any,
+          });
+        });
+      });
+    });
   }
-
-  // this.id = this.activeRoute.snapshot.params['id'];
-
-  // this.generalService.getCatalogos(`Uso_Material`).subscribe((data) => {
-  //   this.usomat = data;
-
-  //   this.generalService.getCatalogos(`Tipo_Material`).subscribe((data) => {
-  //     this.tipmat = data;
-
-  //     this.servicioMateriale.getMaterial(this.id).subscribe((data: any) => {
-  //       this.form.setValue({
-  //         Nombre_Material: data[0].Nombre_Material,
-  //         Proveedor_Material: data[0].Proveedor_Material,
-  //         tel_Proveedor_Material: data[0].tel_Proveedor_Material,
-  //         Tipo_Material: this.tipmat.find(
-  //           (respon: any) => respon.name === data[0].Nombre_Catalogo
-  //         ) as any,
-  //         Uso_Material: this.usomat.find(
-  //           (respon: any) => respon.name === data[0].Tipo_Catalogo
-  //         ) as any,
-  //       });
-  //     });
-  //   });
-  // });
 }

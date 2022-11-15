@@ -8,7 +8,7 @@ export interface Reportes {
   Sexo_Encargado: string;
   Fecha_Nacimiento: Date | string;
   Tipo_Documento: string;
-  Numero_Documento: number;
+  Número_Documento: number;
   Rol_Encargado: string;
   Nombre_producto: string;
   Peso_Producto: string;
