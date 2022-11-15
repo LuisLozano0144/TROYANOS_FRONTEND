@@ -69,7 +69,7 @@ export class ServicioProduccion {
       httpOptions
     );
   }
-  // Método para INSERTAR una prpducción
+  // Método para MODIFICAR una prpducción
   putProduccion({
     Id_Produccion,
     Fecha_Produccion,

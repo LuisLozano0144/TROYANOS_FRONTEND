@@ -6,6 +6,7 @@ import { Select } from '../produccion-interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-modificar',
@@ -17,7 +18,6 @@ export class ModificarComponent implements OnInit {
   public id: string = '';
 
   public form = new FormGroup({
-    Id_Produccion: new FormControl(''),
     Fecha_Produccion: new FormControl(''),
     Id_Empleado_Produccion: new FormControl<Select>({ code: '', name: '' }),
     Id_Producto_Produccion: new FormControl<Select>({ code: '', name: '' }),
@@ -97,14 +97,50 @@ export class ModificarComponent implements OnInit {
     private messageService: MessageService
   ) {}
 
+  // ngOnInit(): void {
+  //   this.id = this.activeRoute.snapshot.params['id'];
+
+  //   this.generalService
+  //     .getProductos()
+  //     .subscribe((data) => (this.produc = data));
+  //   this.generalService
+  //     .NombrePersonas()
+  //     .subscribe((data) => (this.people = data));
+  // }
   ngOnInit(): void {
     this.id = this.activeRoute.snapshot.params['id'];
 
-    this.generalService
-      .getProductos()
-      .subscribe((data) => (this.produc = data));
-    this.generalService
-      .NombrePersonas()
-      .subscribe((data) => (this.people = data));
+    this.generalService.getProductos().subscribe((data) => {
+      this.produc = data;
+
+      this.generalService.NombrePersonas().subscribe((ata: any) => {
+        this.people = data;
+        this.servicioProduccion
+          .getProduccion(this.id)
+          .subscribe((data: any) => {
+            console.log(data);
+
+            console.log(
+              this.produc.find((result: any) => {
+                console.log(result);
+                return result.name === data[0].Nombre_Producto;
+              })
+            );
+
+            this.form.setValue({
+              Fecha_Produccion: data[0].Fecha_Produccion,
+              num_totalProduccion: data[0].num_totalProduccion,
+              num_Defectuosos_Produccion: data[0].num_Defectuosos_Produccion,
+              Id_Empleado_Produccion: this.people.find(
+                (item: any) =>
+                  item.name.split(' ')[0] === data[0].Nombre_Empleado
+              ) as any,
+              Id_Producto_Produccion: this.produc.find(
+                (result: any) => result.name === data[0].Nombre_producto
+              ),
+            });
+          });
+      });
+    });
   }
 }

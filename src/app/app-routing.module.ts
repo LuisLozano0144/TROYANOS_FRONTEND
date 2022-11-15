@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ReportesComponent } from './pages/reportes/reportes/reportes.component';
 //entutadores para navegador
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
       import(
         './pages/materiales-x-productos/materiales-x-productos.module'
       ).then((m) => m.MaterialesXProductosModule),
+  },
+  {
+    path: 'reportes',
+    component: ReportesComponent,
   },
   { path: '**', redirectTo: 'catalogo' },
 ];
